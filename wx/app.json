@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/index/index"
+   
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F1F1F1",
+    "navigationBarTitleText": "SendAnyWhere",
+    "navigationBarTextStyle": "black",
+    "backgroundColor":"#F1F1F1"
+  },
+  
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

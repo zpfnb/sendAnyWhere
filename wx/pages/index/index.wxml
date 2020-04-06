@@ -1,0 +1,53 @@
+<!-- 底部内容 -->
+<view class="login_button">
+    <view wx:if="{{!isLogin}}" class="weui-cell weui-cell_active">
+        <view class="weui-cell__bd">
+            <input bindinput="getName" adjust-position="true" type="text" class="weui-input" confirm-type="send" placeholder="请设置唯一昵称(字母3-10位)" />
+        </view>
+        <a bindtap="setName" class="weui-btn weui-btn_mini weui-btn_primary">确定</a>
+    </view>
+    <view wx:else class="weui-cell weui-cell_active" style="z-index:-1">
+        <view class="weui-cell__bd">
+            <textarea wx:if="{{textareaIndexTooHeight}}" value="{{message}}" bindinput="getTextareaValue"  maxlength="{{-1}}" show-confirm-bar="{{false}}" adjust-position="true" class="weui-input" placeholder="请输入"></textarea>
+        </view>
+        <a bindtap="send" type="primary" class="weui-btn weui-btn_mini weui-btn_primary">发送</a>
+        <image class="add_image" src="./img/add.png" bindtap="openDialog"></image>
+    </view>
+</view>
+<!-- dialog -->
+<view class="fadeIn" wx:if="{{dialog}}">
+    <view class="weui-mask" bindtap="closeDialog"></view>
+    <view class="weui-half-screen-dialog">
+        <view class="weui-half-screen-dialog__hd">
+            <view class="weui-half-screen-dialog__hd__side" bindtap="closeDialog">
+                <a class="weui-icon-btn">
+                    关闭
+                    <i class="weui-icon-close-thin"></i>
+                </a>
+            </view>
+            <view class="weui-half-screen-dialog__hd__main">
+                <strong class="weui-half-screen-dialog__title">更多</strong>
+            </view>
+        </view>
+        <view class="weui-flex" style="height:150px;padding-top:10px;" >
+           <view class="flex-item">
+               <image bindtap="sendPic" src="./img/send-picture.png" />
+              
+           </view>
+		
+        </view>
+    </view>
+</view>
+<!-- 消息列表 -->
+<view class="main">
+    <scroll-view scroll-y="true" scroll-into-view='{{toView}}' >
+        <view class="container">
+            <view class="message_container" wx:for="{{messageList}}" wx:key="index" id="msg-{{index}}">
+              
+                <view class="message_time">{{item.time}}</view>
+                <text wx:if="{{item.type == 'txt'}}" bindlongpress="copythis" data-txt="{{item.txt}}" class="message_txt" selectable="true">{{item.txt}}</text>
+                <image wx:if="{{item.type == 'img'}}" bindlongpress="savePicture" data-url="{{item.url}}" src="{{item.url}}" mode="widthFix" class="messsage_img"/>
+            </view>
+        </view>
+    </scroll-view>
+</view>
